@@ -51,6 +51,18 @@ By inspecting this file I learned that:
 ```
 here is my snippet of code used for data processing
 ```
+grep -v "ZMMIL||ZMMLR||ZMMMR" fang_et_al_genotypes.txt > ZM_3_groups.txt
+grep "ZMMIL" ZM_3_groups.txt | head -n 1
+grep "ZMMLR" ZM_3_groups.txt | head -n 1
+grep "ZMMMR" ZM_3_groups.txt | head -n 1
+
+awk -f transpose.awk maize_3genotypes. > transposed_maize.txt
+grep "ZMMIL" transposed_maize.txt | head -n 2
+sort -k1,1V ZM_3_transposed.txt > sorted_ZM_3_transposed.txt
+echo $?
+sort -k1,1V snp_position.txt > sorted_snp_position.txt
+echo $?
+head -n 2 sorted_snp_position.txt
 
 Here is my brief description of what this code does
 
