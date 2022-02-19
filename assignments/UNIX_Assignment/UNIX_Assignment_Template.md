@@ -199,27 +199,79 @@ join -1 1 -2 1 -t $'\t' sort_cut_snp_headless.txt sort_maize_headless.txt > join
 
 Here is my brief description of what this code does
 
- wc sort_cut_snp_headless.txt
- 983  2943 22282 sort_cut_snp_headless.txt
 
- wc sort_maize_headless.txt
- 983 1547242 6195860 sort_maize_headless.txt
+```
+wc sort_cut_snp_headless.txt
+```
+
+983  2943 22282 sort_cut_snp_headless.txt
+
+```
+wc sort_maize_headless.txt
+```
+
+983 1547242 6195860 sort_maize_headless.txt
+
+``` 
+wc sort_teosinte_headless.txt
+```
+
+983  959408 3844524 sort_teosinte_headless.txt
  
- wc sort_teosinte_headless.txt
- 983  959408 3844524 sort_teosinte_headless.txt
  
+sort based on increasing order of positions and missing data encoded by "?". scroll through the file and check first and last entries, "?" already present in file in place of missing data
  
- sort based on increasing order of positions
+```
+grep -v "multiple" join_maize.txt | grep -v "unknown" | sort -k3,3n > increase_join_maize.txt
+less increase_join_maize.txt
+```
  
- ```
- grep -v "multiple" join_maize.txt | grep -v "unkown" | sort -k3,3n > increase_join_maize.txt
- ```
- check first and last entries 
+sort based on decreasing order of positions
  
- ```
- less increase_join_maize.txt
- ```
+```
+grep -v "multiple" join_maize.txt | grep -v "unknown" | sort -k3,3nr > decrease_join_maize.txt
+less decrease_join_maize.txt
+```
  
+replace missing data (i.e.,?) with "-" in decrease_join_maize.txt
+
+```
+sed 's/?/-/g' decrease_join_maize.txt > decrease_join_maize-.txt
+less decrease_join_maize-.txt
+```
+
+ 
+multiple snp positions in one file
+ 
+```
+awk '$3 ~ /^multiple$/' join_maize.txt > maize_multiple.txt
+```
+  
+unknown snp positions in one file
+  
+```
+awk '$3 ~ /^unknown$/' join_maize.txt > maize_unknown.txt
+```
+
+Distribute data by chromosomes in increasing order of snp positions
+
+```
+awk '$2 ~ /^1$/' increase_join_maize.txt > chr1_inc_maize.txt
+less chr1_inc_maize.txt
+awk '$2 ~ /^2$/' increase_join_maize.txt > chr2_inc_maize.txt
+```
+did the same for all 10 chromosomes
+
+Distribute data by chromosomes in decreasing order of snp positions
+
+```
+awk '$2 ~ /^1$/' decrease_join_maize-.txt > chr1_dec_maize.txt
+less chr1_dec_maize.txt
+awk '$2 ~ /^2$/' decrease_join_maize-.txt > chr2_dec_maize.txt
+```
+did the same for all 10 chromosomes
+
+
 ###Teosinte Data
 
 ```
@@ -264,11 +316,6 @@ to sort teosinte_headless.txt
 
 ```
 sort -k1,1 teosinte_headless.txt > sort_teosinte_headless.txt
-```
-
-check if it was sorted
-
-```
 head -n 1 sort_teosinte_headless.txt
 ```
 
@@ -276,10 +323,56 @@ joining snp and teosinte
 
 ```
 join -1 1 -2 1 -t $'\t' sort_cut_snp_headless.txt sort_teosinte_headless.txt > join_teosinte.txt
-```
-
-```
 cut -f 1,2,3,4,5 join_teosinte.txt |head -n 3
 ```
 
-Here is my brief description of what this code does
+sort based on increasing order of snp positions and missing data encoded by "?". scroll through the file and check first and last entries, "?" already present in file in place of missing data
+
+```
+grep -v "multiple" join_teosinte.txt | grep -v "unknown" | sort -k3,3n > increase_join_teosinte.txt
+less increase_join_teosinte.txt
+```
+
+sort based on decreasing order of positions
+
+```
+grep -v "multiple" join_teosinte.txt | grep -v "unknown" | sort -k3,3nr > decrease_join_teosinte.txt
+less decrease_join_teosinte.txt
+```
+
+replace missing data (i.e.,?) with "-" in decrease_join_maize.txt
+
+```
+sed 's/?/-/g' decrease_join_teosinte.txt > decrease_join_teosinte-.txt
+less decrease_join_teosinte-.txt
+```
+
+multiple snp positions in one file
+
+```
+awk '$3 ~ /^multiple$/' join_teosinte.txt > teosinte_multiple.txt
+```
+
+unknown snp positions in one file
+
+```
+awk '$3 ~ /^unknown$/' join_teosinte.txt > teosinte_unknown.txt
+```
+
+Distribute data by chromosomes in increasing order of snp positions
+
+```
+awk '$2 ~ /^1$/' increase_join_teosinte.txt > chr1_inc_teosinte.txt
+less chr1_inc_teosinte.txt
+awk '$2 ~ /^2$/' increase_join_teosinte.txt > chr2_inc_teosinte.txt
+```
+did the same for all 10 chromosomes
+
+Distribute data by chromosomes in decreasing order of snp positions
+
+```
+awk '$2 ~ /^1$/' decrease_join_teosinte-.txt > chr1_dec_teosinte.txt
+less chr1_dec_teosinte.txt
+awk '$2 ~ /^2$/' decrease_join_teosinte-.txt > chr2_dec_teosinte.txt
+```
+did the same for all 10 chromosomes
