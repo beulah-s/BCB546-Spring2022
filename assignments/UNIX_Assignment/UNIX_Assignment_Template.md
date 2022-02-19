@@ -51,18 +51,13 @@ By inspecting this file I learned that:
 ```
 here is my snippet of code used for data processing
 ```
-grep -v "ZMMIL||ZMMLR||ZMMMR" fang_et_al_genotypes.txt > ZM_3_groups.txt
-grep "ZMMIL" ZM_3_groups.txt | head -n 1
-grep "ZMMLR" ZM_3_groups.txt | head -n 1
-grep "ZMMMR" ZM_3_groups.txt | head -n 1
+grep -E "(ZMMIL|ZMMLR|ZMMMR|Group)" fang_et_al_genotypes.txt > 3maize_files.txt
+cut -f 3 3maize_files.txt | sort | uniq -c | head -n 10 
+awk -f transpose.awk 3maize_files.txt > transposed_maize.txt
+tail -n+4 transposed_maize.txt > maize_headless.txt
+cut -f 1,2,3,4 maize_headless.txt | head -n 4
+cut -f 1,3,4 snp_position.txt > cut_snp.txt
 
-awk -f transpose.awk maize_3genotypes. > transposed_maize.txt
-grep "ZMMIL" transposed_maize.txt | head -n 2
-sort -k1,1V ZM_3_transposed.txt > sorted_ZM_3_transposed.txt
-echo $?
-sort -k1,1V snp_position.txt > sorted_snp_position.txt
-echo $?
-head -n 2 sorted_snp_position.txt
 
 Here is my brief description of what this code does
 
@@ -72,5 +67,11 @@ Here is my brief description of what this code does
 ```
 here is my snippet of code used for data processing
 ```
-
+grep -E "(ZMPBA|ZMPIL|ZMPJA|Group)" fang_et_al_genotypes.txt > 3teosinte_files.txt
+cut -f 3 3teosinte_files.txt | sort | uniq -c | head -n 10
+awk -f transpose.awk 3teosinte_files.txt > transposed_teosinte.txt
+cut -f 1,2,3,4 transposed_teosinte.txt | head -n 4
+tail -n+4 transposed_teosinte.txt > teosinte_headless.txt
+cut -f 1,2,3,4 teosinte_headless.txt | head -n 4
+cut -f 1,3,4 snp_position.txt > cut_snp.txt
 Here is my brief description of what this code does
