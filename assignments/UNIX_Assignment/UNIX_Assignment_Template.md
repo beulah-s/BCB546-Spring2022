@@ -198,6 +198,7 @@ to join sort_cut_snp_headless.txt and sort_maize_headless.txt
 
 ```
 join -1 1 -2 1 -t $'\t' sort_cut_snp_headless.txt sort_maize_headless.txt > join_maize.txt
+cut -f 1,2,3,4 join_maize.txt | head -n 4
 ```
 
 
@@ -214,11 +215,10 @@ wc sort_maize_headless.txt
 
 The sorted maize file has 983 lines, 1547242 words and 6195860 characters 
 
-``` 
-wc sort_teosinte_headless.txt
 ```
-
-The sortd teosinte file has 983 lines, 959408 words and 3844524 characters
+wc join_maize.txt
+983 1549202 6207318 join_maize.txt
+```
 
 sort based on increasing order of positions and missing data encoded by "?". scroll through the file and check first and last entries, "?" already present in file in place of missing data
  
@@ -314,6 +314,13 @@ joining snp and teosinte
 join -1 1 -2 1 -t $'\t' sort_cut_snp_headless.txt sort_teosinte_headless.txt > join_teosinte.txt
 cut -f 1,2,3,4,5 join_teosinte.txt |head -n 3
 ```
+
+``` 
+wc sort_teosinte_headless.txt
+```
+
+The sortd teosinte file has 983 lines, 959408 words and 3844524 characters
+
 
 Sort based on increasing order of snp positions and missing data encoded by "?". scroll through the file and check first and last entries, "?" already present in file in place of missing data
 
