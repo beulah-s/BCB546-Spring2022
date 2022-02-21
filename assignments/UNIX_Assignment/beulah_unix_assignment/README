@@ -1,26 +1,26 @@
 The folder contains files from data inspection and data processing of the fang_et_al_genotypes and snp_position data.
 
-```
+
 UNIX_Assignment_Template.md
-```
+
 This file has the workflow and codes I used to inspect and process the data.
 
-```
+
 maize_files
-```
+
 This folder has the files for the 3 Maize groups (ZMMIL, ZMMLR and ZMMMR) and the data for the individual chromosomes (1 - 10) with the IDs arranged in increasing order
 of the snp positions and decreasing order of the snp positions. It also has one file with all IDs with multiple positions and one file with all IDs for unknown 
 positions separately.
 
-```
+
 teosinte_files
-```
+
 This folder has the files for the 3 Maize groups (ZMPBA, ZMPIL and ZMPJA) and the data for the individual chromosomes (1 - 10) with the IDs arranged in increasing order
 of the snp positions and decreasing order of the snp positions. It also has one file with all IDs for multiple positions and one file with all IDs for unknown 
 positions separately.
 
-```
+
 snp_files
-```
+
 
 This folder has the snp_positions data cut and sorted with just the snp IDs, chromosome number and positions.
