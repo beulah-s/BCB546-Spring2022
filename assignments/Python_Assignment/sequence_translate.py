@@ -123,7 +123,7 @@ species_list = list(penguins_df.species)
 ## 8 ##
 ## Plot a bar-chart of the mass with the x-axes labeled with species names.
 ## *Q1* What is the smallest penguin species? 
-## *Q2* What else is interesting about this species?
+## *Q2* What is the geographical range of this species?
 
 ## 9 ##
 ## Plot a visualization of the molecular weight (y-axis) as a function of GC-content (x-axis).
